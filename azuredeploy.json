@@ -8,6 +8,10 @@
         "siteLocation": {
             "type": "string",
             "defaultValue": "West US"
+        },
+        "storageName": {
+            "type": "string",
+            "defaultValue": "[replace(parameters('siteName'), '-', '')]"
         }
     },
     "resources": [
