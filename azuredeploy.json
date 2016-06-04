@@ -117,18 +117,6 @@
             ]
         },
         {
-            "type": "Microsoft.Web/serverfarms",
-            "name": "[parameters('hostingPlanName')]",
-            "location": "[parameters('siteLocation')]",
-            "apiVersion": "2014-06-01",
-            "properties": {
-                "name": "[parameters('hostingPlanName')]",
-                "sku": "[parameters('sku')]",
-                "workerSize": "[parameters('workerSize')]",
-                "numberOfWorkers": 1
-            }
-        },
-        {
             "type": "Microsoft.Web/sites",
             "name": "[parameters('siteName')]",
             "location": "[parameters('siteLocation')]",
@@ -204,11 +192,5 @@
                 }
             ]
         }
-    ],
-    "outputs": {
-        "storageKeys": {
-            "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts/', variables('storageName')), '2015-06-15')]",
-            "type": "object"
-        }
-    }
+    ]
 }
