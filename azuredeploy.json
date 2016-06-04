@@ -15,10 +15,7 @@
         }
     },
     "variables": {
-        "storageName": {
-            "type": "string",
-            "defaultValue": "[replace(parameters('siteName'), '-', '')]"
-        }
+        "storageName": "[replace(parameters('siteName'), '-', '')]"
     },
     "resources": [
         {
