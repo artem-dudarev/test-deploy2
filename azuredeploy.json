@@ -14,9 +14,15 @@
             "defaultValue": "[replace(parameters('siteName'), '-', '')]"
         }
     },
+    "variables": {
+        "storageName": {
+            "type": "string",
+            "defaultValue": "[replace(parameters('siteName'), '-', '')]"
+        }
+    },
     "resources": [
         {
-            "name": "[parameters('storageName')]",
+            "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "location": "[parameters('siteLocation')]",
             "apiVersion": "2015-06-15",
