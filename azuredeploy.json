@@ -184,10 +184,6 @@
                                     {
                                         "virtualPath": "/modules",
                                         "physicalPath": "site\\wwwroot\\modules"
-                                    },
-                                    {
-                                        "virtualPath": "/assets",
-                                        "physicalPath": "site\\wwwroot\\platform\\App_Data\\Assets"
                                     }
                                 ]
                             }
