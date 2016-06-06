@@ -68,6 +68,15 @@
     },
     "resources": [
         {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('storageName')]",
+            "location": "[parameters('siteLocation')]",
+            "apiVersion": "2015-06-15",
+            "properties": {
+                "accountType": "[variables('storageType')]"
+            }
+        },
+        {
             "type": "Microsoft.Sql/servers",
             "name": "[parameters('sqlServerName')]",
             "location": "[parameters('siteLocation')]",
@@ -140,7 +149,8 @@
                     "name": "web",
                     "apiVersion": "2014-04-01",
                     "dependsOn": [
-                        "[concat('Microsoft.Web/Sites/', parameters('siteName'))]"
+                        "[concat('Microsoft.Web/Sites/', parameters('siteName'))]",
+                        "[concat('Microsoft.Storage/storageAccounts/', variables('storageName'))]"
                     ],
                     "properties": {
                         "connectionStrings": [
@@ -151,7 +161,12 @@
                             },
                             {
                                 "Name": "AssetsConnectionString",
-                                "ConnectionString": "[concat('provider=LocalStorage;rootPath=~/App_Data/Assets;publicUrl=http://', parameters('siteName'), '.azurewebsites.net/assets')]",
+                                "ConnectionString": "[concat('provider=AzureBlobStorage;DefaultEndpointsProtocol=https;AccountName=', variables('storageName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts/', variables('storageName')), '2015-06-15').key1)]",
+                                "Type": 3
+                            },
+                            {
+                                "Name": "CmsContentConnectionString",
+                                "ConnectionString": "[concat('provider=AzureBlobStorage;DefaultEndpointsProtocol=https;AccountName=', variables('storageName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts/', variables('storageName')), '2015-06-15').key1)]",
                                 "Type": 3
                             }
                         ],
