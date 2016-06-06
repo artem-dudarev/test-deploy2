@@ -59,6 +59,7 @@
     "variables": {
         "storageName": "[replace(parameters('siteName'), '-', '')]",
         "storageType": "Standard_LRS",
+        "storageKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts/', variables('storageName')), '2015-06-15').key1]",
         "Commerce": {
             "configValue": "commerce"
         },
