@@ -59,7 +59,6 @@
     "variables": {
         "storageName": "[replace(parameters('siteName'), '-', '')]",
         "storageType": "Standard_LRS",
-        "storageConnectionString": "[concat('provider=AzureBlobStorage;DefaultEndpointsProtocol=https;AccountName=', variables('storageName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts/', variables('storageName')), '2015-06-15').key1)]",
         "Commerce": {
             "configValue": "commerce"
         },
