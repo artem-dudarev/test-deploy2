@@ -59,11 +59,13 @@
     "variables": {
         "storageName": "[replace(parameters('siteName'), '-', '')]",
         "storageType": "Standard_LRS",
-        "Commerce": {
-            "configValue": "commerce"
-        },
-        "None": {
-            "configValue": ""
+        "moduleBundles": {
+            "Commerce": {
+                "configValue": "commerce"
+            },
+            "None": {
+                "configValue": ""
+            }
         }
     },
     "resources": [
@@ -173,7 +175,7 @@
                         "appSettings": [
                             {
                                 "name": "VirtoCommerce:AutoInstallModuleBundles",
-                                "value": "[variables(parameters('installModuleBundle')).configValue]"
+                                "value": "[variables('moduleBundles')[parameters('installModuleBundle')].configValue]"
                             }
                         ],
                         "virtualApplications": [
